@@ -5,3 +5,4 @@ chmod +x ./yq
 echo "--- :helm Install helm"
 curl -Lo ./helm.tar.gz "https://get.helm.sh/helm-${HELM_VERSION}-linux-amd64.tar.gz"
 tar --strip-components 1 --extract --file=./helm.tar.gz linux-amd64/helm
+chmod +x ./helm

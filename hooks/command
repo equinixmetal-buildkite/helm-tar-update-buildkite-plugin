@@ -5,7 +5,7 @@ for chartfile in $(find . -name Chart.yaml -type f); do
     deplength=$(./yq '.dependencies | length' "$chartfile")
     if [ "$deplength" -gt "0" ]; then
         pushd "$chartdir"
-        helm dependency update
+        ./helm dependency update
         popd
     else
         echo "Skipping $chartfile since no dependencies were found."
