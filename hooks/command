@@ -17,7 +17,7 @@ done
 
 git diff --cached --exit-code > /dev/null
 
-if [ $? -ne 0 ]
+if [ $? -ne 0 ]; then
     git config user.email "metal-buildkite@equinix.com"
     git config user.name "Buildkite Agent"
 
