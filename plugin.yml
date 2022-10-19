@@ -4,5 +4,4 @@ author: Equinix Metal
 requirements:
   - bash
   - helm
-  - yq
   - git
