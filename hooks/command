@@ -2,7 +2,7 @@ set -eu
           
 for chartfile in $(find . -name Chart.yaml -type f); do
     chartdir=$(dirname "$chartfile")
-    deplength=$(yq '.dependencies | length' "$chartfile")
+    deplength=$(jq '.dependencies | length' "$chartfile")
     if [ "$deplength" -gt "0" ]; then
         pushd "$chartdir"
         helm dependency update
