@@ -1,0 +1,8 @@
+name: helm-tar-update
+description: Buildkite plugin to automatically fetch helm tarballs
+author: Equinix Metal
+requirements:
+  - bash
+  - helm
+  - yq
+  - git
