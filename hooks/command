@@ -1,4 +1,4 @@
-set -eu
+set -eux
           
 for chartfile in $(find . -name Chart.yaml -type f); do
     chartdir=$(dirname "$chartfile")
