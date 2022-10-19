@@ -1,0 +1,28 @@
+set -ux
+          
+for chartfile in $(find . -name Chart.yaml -type f); do
+    chartdir=$(dirname "$chartfile")
+    deplength=$(./yq '.dependencies | length' "$chartfile")
+    if [ "$deplength" -gt "0" ]; then
+        pushd "$chartdir"
+        ./helm dependency update
+        popd
+    else
+        echo "Skipping $chartfile since no dependencies were found."
+        continue
+    fi
+            
+    git add "${chartdir}"
+done
+
+git diff --cached --exit-code > /dev/null
+
+if [ $? -ne 0 ]; then
+    git config user.email "metal-buildkite@equinix.com"
+    git config user.name "Buildkite Agent"
+
+    git add .
+    git checkout -b "${BUILDKITE_BRANCH}"
+    git commit -m "Update Helm Tarballs"
+    git push origin "${BUILDKITE_BRANCH}"
+fi
