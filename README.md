@@ -15,7 +15,11 @@ ensures that when a dependency update happens, a tarball is downloaded.
 In your workflow, simply add the following:
 
 ```yaml
-Coming Soon
+---
+steps:
+  - name: ":helm: Helm Tarball Update"
+    plugins:
+      github.com/equinixmetal-buildkite/helm-tar-update-buildkite-plugin#v0.0.1: {}
 ```
 
 This will make sure that for any pull request that updates Helm dependencies,
