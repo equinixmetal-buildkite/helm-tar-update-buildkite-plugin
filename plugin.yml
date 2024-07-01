@@ -5,3 +5,11 @@ requirements:
   - bash
   - helm
   - git
+configuration:
+  properties:
+    helm_token:
+      type: string
+    helm_user:
+      type: string
+    helm_registry:
+      type: string

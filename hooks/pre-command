@@ -6,3 +6,13 @@ echo "--- :helm Install helm"
 curl -Lo /tmp/helm.tar.gz "https://get.helm.sh/helm-${HELM_VERSION}-linux-amd64.tar.gz"
 tar --strip-components 1 --extract -C /tmp --file=/tmp/helm.tar.gz linux-amd64/helm
 chmod +x /tmp/helm
+
+if [ ! -z "${BUILDKITE_PLUGIN_HELM_TAR_UPDATE_HELM_USER}"] && [ ! -z "${BUILDKITE_PLUGIN_HELM_TAR_UPDATE_HELM_TOKEN}"] && [ ! -z "${BUILDKITE_PLUGIN_HELM_TAR_UPDATE_HELM_REGISTRY}"]; then
+  echo "--- :helm: Logging into helm registry"
+  helm registry login -u ${BUILDKITE_PLUGIN_HELM_TAR_UPDATE_HELM_USER} -p ${BUILDKITE_PLUGIN_HELM_TAR_UPDATE_HELM_TOKEN} ${BUILDKITE_PLUGIN_HELM_TAR_UPDATE_HELM_REGISTRY}
+  
+  if [ $? -ne 0 ]; then
+    echo "Failed to login to helm registry"
+    exit 1
+  fi
+fi

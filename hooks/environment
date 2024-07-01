@@ -2,4 +2,4 @@ echo "--- :yaml: Setting yq version"
 export YQ_VERSION="v4.28.2"
 
 echo "--- :helm: Setting helm version"
-export HELM_VERSION="v3.10.1"
+export HELM_VERSION="v3.15.2"
